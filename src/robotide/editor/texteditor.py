@@ -46,7 +46,7 @@ except ImportError:
 
 
 class TextEditorPlugin(Plugin, TreeAwarePluginMixin):
-    title = 'Text Edit'
+    title = '代码编辑'
 
     def __init__(self, application):
         Plugin.__init__(self, application)
@@ -187,7 +187,7 @@ class TextEditorPlugin(Plugin, TreeAwarePluginMixin):
         self._show_editor()
 
     def OnTabChanging(self, message):
-        if 'Edit' in message.oldtab:
+        if '编辑器' in message.oldtab:
             self._editor.save()
 
     def _apply_txt_changes_to_model(self):
@@ -387,7 +387,7 @@ class SourceEditor(wx.Panel, RIDEDialog):
         # text about syntax colorization
         self.editor_toolbar = HorizontalSizer()
         default_components = HorizontalSizer()
-        button = ButtonWithHandler(self, 'Apply Changes', handler=lambda e: self.save())
+        button = ButtonWithHandler(self, '应用更改', handler=lambda e: self.save())
         button.SetBackgroundColour(Colour(self.dlg.color_secondary_background))
         button.SetForegroundColour(Colour(self.dlg.color_secondary_foreground))
         default_components.add_with_padding(button)
@@ -402,7 +402,7 @@ class SourceEditor(wx.Panel, RIDEDialog):
         self._search_field.SetForegroundColour(Colour(self.dlg.color_secondary_foreground))
         self._search_field.Bind(wx.EVT_TEXT_ENTER, self.OnFind)
         container_sizer.add_with_padding(self._search_field)
-        button = ButtonWithHandler(self, 'Search', handler=self.OnFind)
+        button = ButtonWithHandler(self, '搜索', handler=self.OnFind)
         button.SetBackgroundColour(Colour(self.dlg.color_secondary_background))
         button.SetForegroundColour(Colour(self.dlg.color_secondary_foreground))
         container_sizer.add_with_padding(button)

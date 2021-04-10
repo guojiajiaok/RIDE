@@ -83,7 +83,7 @@ class ParserLogPlugin(Plugin):
     def _create_menu(self):
         self.unregister_actions()
         self.register_action(ActionInfo(
-            'Tools', 'View Parser Log', self.OnViewLog, position=83))
+            '工具', '查看解析器日志', self.OnViewLog, position=83))
 
     def _log_message(self, message):
         self._log.append(message)

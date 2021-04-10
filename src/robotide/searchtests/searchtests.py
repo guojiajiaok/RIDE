@@ -27,13 +27,13 @@ from ..widgets import ImageProvider
 
 @total_ordering
 class TestSearchPlugin(Plugin):
-    """A plugin for searching tests based on name, tags and documentation"""
-    HEADER = 'Search Tests'
+    """搜索插件"""
+    HEADER = '搜索...'
     _selection = None
 
     def enable(self):
         self.register_action(ActionInfo(
-            'Tools', self.HEADER, self.show_empty_search,
+            '工具', self.HEADER, self.show_empty_search,
             shortcut='F3', doc=self.__doc__,
             icon=ImageProvider().TEST_SEARCH_ICON, position=50))
         self.register_search_action(

@@ -27,6 +27,7 @@ from ..controller import macrocontrollers
 # import TestCaseController, UserKeywordController
 from ..controller import settingcontrollers
 # import VariableController
+from ..controller.ctrlcommands import SortTests, SortVariables
 from ..editor.editordialogs import (TestCaseNameDialog, UserKeywordNameDialog, ScalarVariableDialog, ListVariableDialog,
                                     CopyUserKeywordDialog, DictionaryVariableDialog)
 from ..publish import RideOpenVariableDialog, RideTestSelectedForRunningChanged, PUBLISHER

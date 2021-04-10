@@ -21,7 +21,7 @@ from wx import html, Colour
 from ..preferences.settings import RideSettings
 
 #TODO: Make this colour configurable
-# HTML_BACKGROUND = (240, 242, 80)  # (200, 222, 40)
+# HTML_BACKGROUND = (255,255,255)  # (200, 222, 40)
 _settings = RideSettings()
 general_settings = _settings['General']
 HTML_BACKGROUND = general_settings['background help']

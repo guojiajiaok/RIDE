@@ -326,7 +326,7 @@ class PybotProfile(BaseProfile, RIDEDialog):
 
     def _get_log_options_panel(self, parent):
         collapsible_pane = wx.CollapsiblePane(
-            parent, wx.ID_ANY, 'Log options',
+            parent, wx.ID_ANY, '日志选项',
             style=wx.CP_DEFAULT_STYLE | wx.CP_NO_TLW_RESIZE)
         collapsible_pane.Bind(wx.EVT_COLLAPSIBLEPANE_CHANGED,
                               self.OnCollapsiblePaneChanged,
@@ -334,7 +334,7 @@ class PybotProfile(BaseProfile, RIDEDialog):
         pane = collapsible_pane.GetPane()
         pane.SetBackgroundColour(self._mysettings.color_background)
         pane.SetForegroundColour(self._mysettings.color_foreground)
-        label = Label(pane, label="Output directory: ")
+        label = Label(pane, label="输出目录: ")
         self._output_directory_text_ctrl = \
             self._create_text_ctrl(pane, self.output_directory,
                                    "removed due unicode_error (delete this)",
@@ -352,13 +352,13 @@ class PybotProfile(BaseProfile, RIDEDialog):
 
         suite_name_outputs_cb = self._create_checkbox(
             pane, self.are_log_names_with_suite_name,
-            "Add suite name to log names", self.OnSuiteNameOutputsCheckBox)
+            "添加集合名到日志名", self.OnSuiteNameOutputsCheckBox)
         timestamp_outputs_cb = self._create_checkbox(
             pane, self.are_log_names_with_timestamp,
-            "Add timestamp to log names", self.OnTimestampOutputsCheckbox)
+            "添加时间戳到日志名", self.OnTimestampOutputsCheckbox)
         save_logs_cb = self._create_checkbox(
             pane, self.are_saving_logs,
-            "Save Console and Message logs", self.OnSaveLogsCheckbox)
+            "保存控制台与消息到日志", self.OnSaveLogsCheckbox)
 
         vertical_sizer = wx.BoxSizer(wx.VERTICAL)
         vertical_sizer.Add(horizontal_sizer, 0, wx.EXPAND)
@@ -396,7 +396,7 @@ class PybotProfile(BaseProfile, RIDEDialog):
 
     def _get_arguments_panel(self, parent):
         collapsible_pane = wx.CollapsiblePane(
-            parent, wx.ID_ANY, 'Arguments',
+            parent, wx.ID_ANY, '参数',
             style=wx.CP_DEFAULT_STYLE | wx.CP_NO_TLW_RESIZE)
         collapsible_pane.Bind(wx.EVT_COLLAPSIBLEPANE_CHANGED,
                               self.OnCollapsiblePaneChanged,
@@ -460,7 +460,7 @@ class PybotProfile(BaseProfile, RIDEDialog):
     def _get_tags_panel(self, parent):
         """Create a panel to input include/exclude tags"""
         collapsible_pane = wx.CollapsiblePane(
-            parent, wx.ID_ANY, 'Tests filters',
+            parent, wx.ID_ANY, '过滤器',
             style=wx.CP_DEFAULT_STYLE | wx.CP_NO_TLW_RESIZE)
         collapsible_pane.Bind(wx.EVT_COLLAPSIBLEPANE_CHANGED,
                               self.OnCollapsiblePaneChanged,
@@ -469,10 +469,10 @@ class PybotProfile(BaseProfile, RIDEDialog):
         pane.SetBackgroundColour(self._mysettings.color_background)
         pane.SetForegroundColour(self._mysettings.color_foreground)
         include_cb = self._create_checkbox(pane, self.apply_include_tags,
-                                           "Only run tests with these tags:",
+                                           "仅这些标签运行:",
                                            self.OnIncludeCheckbox)
         exclude_cb = self._create_checkbox(pane, self.apply_exclude_tags,
-                                           "Skip tests with these tags:",
+                                           "跳过这些标签运行:",
                                            self.OnExcludeCheckbox)
         self._include_tags_text_ctrl = \
             self._create_text_ctrl(pane, self.include_tags, "unicode_error",

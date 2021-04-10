@@ -43,31 +43,27 @@ from ..utils import RideFSWatcherHandler
 from ..widgets import RIDEDialog, ImageProvider, HtmlWindow
 
 _menudata = """
-[File]
-!&New Project | Create a new top level suite | Ctrlcmd-N | ART_NEW
+[文件]
+!&New Project| 新建工程 | Ctrlcmd-N | ART_NEW
 ---
-!&Open Test Suite | Open file containing tests | Ctrlcmd-O | ART_FILE_OPEN
-!Open &Directory | Open directory containing datafiles | Shift-Ctrlcmd-O | ART_FOLDER_OPEN
-!Open External File | Open file in Code Editor | | ART_NORMAL_FILE
+!&Open Test Suite | 打开测试集 | Ctrlcmd-O | ART_FILE_OPEN
+!Open &Directory | 打开目录 | Shift-Ctrlcmd-O | ART_FOLDER_OPEN
+!Open External File | 打开外部文件 | | ART_NORMAL_FILE
 ---
-!&Save | Save selected datafile | Ctrlcmd-S | ART_FILE_SAVE
-!Save &All | Save all changes | Ctrlcmd-Shift-S | ART_FILE_SAVE_AS
+!&Save | 保存 | Ctrlcmd-S | ART_FILE_SAVE
+!Save &All | 全部保存 | Ctrlcmd-Shift-S | ART_FILE_SAVE_AS
 ---
-!E&xit | Exit RIDE | Ctrlcmd-Q
+!E&xit | 退出 | Ctrlcmd-Q
 
-[Tools]
-!Search Unused Keywords | | | | POSITION-54
-!Manage Plugins | | | | POSITION-81
-!View All Tags | | F7 | | POSITION-82
-!Preferences | | | | POSITION-99
+[工具]
+!Search Unused Keywords | 搜索未用关键词 | | | POSITION-54
+!Manage Plugins | 管理插件 | | | POSITION-81
+!View All Tags | 查看标签 | F7 | | POSITION-82
+!Preferences | 设置 | | | POSITION-99
 
-[Help]
-!Shortcut keys | RIDE shortcut keys
-!User Guide | Robot Framework User Guide
-!Wiki | RIDE User Guide (Wiki)
-!Report a Problem | Open browser to SEARCH on the RIDE issue tracker
-!Release notes | Shows release notes
-!About | Information about RIDE
+[帮助]
+!Shortcut keys | 快捷键
+!About | 关于本程序
 """
 
 ID_CustomizeToolbar = wx.ID_HIGHEST + 1
@@ -143,7 +139,7 @@ class RideFrame(wx.Frame):
     def __init__(self, application, controller):
         size = application.settings.get('mainframe size', (1100, 700))
         # DEBUG self.general_settings = application.settings['General']
-        wx.Frame.__init__(self, parent=None, id=wx.ID_ANY, title='RIDE',
+        wx.Frame.__init__(self, parent=None, id=wx.ID_ANY, title='中思PRA',
                           pos=application.settings.get('mainframe position', (50, 30)),
                           size=size, style=wx.DEFAULT_FRAME_STYLE | wx.SUNKEN_BORDER | wx.BORDER_THEME)
 
@@ -165,7 +161,7 @@ class RideFrame(wx.Frame):
         self._controller = controller
         self._image_provider = ImageProvider()
         self.general_settings = application.settings['General']  #.get_without_default('General')
-        self.color_background_help = self.general_settings.get('background help', (240, 242, 80))
+        self.color_background_help = self.general_settings.get('background help', (255,255,255))
         self.color_foreground_text = self.general_settings.get('foreground text', (7, 0, 70))
         self.color_background = self.general_settings.get_without_default('background')
         self.color_foreground = self.general_settings.get_without_default('foreground')
@@ -202,7 +198,7 @@ class RideFrame(wx.Frame):
         self.SetTitle(self._create_title(message))
 
     def _create_title(self, message):
-        title = 'RIDE'
+        title = '中思RPA'
         if message:
             item = message.item
             title += ' - ' + item.datafile.name
@@ -520,8 +516,7 @@ class RideFrame(wx.Frame):
 
     def OnOpenDirectory(self, event):
         if self.check_unsaved_modifications():
-            path = wx.DirSelector(message="Choose a directory containing Robot"
-                                          " files",
+            path = wx.DirSelector(message="选择文件",
                                   default_path=self._controller.default_dir)
             if path:
                 self.open_suite(path)
@@ -806,7 +801,7 @@ class ActionRegisterer(object):
         action = ActionFactory(action_info)
         self._shortcut_registry.register(action)
         if hasattr(action_info, "menu_name"):
-            if action_info.menu_name == "Tools":
+            if action_info.menu_name == "工具":
                 self._tools_items[action_info.position] = action
                 menubar_can_be_registered = False
         if menubar_can_be_registered:
@@ -818,7 +813,7 @@ class ActionRegisterer(object):
         return action
 
     def register_tools(self):
-        separator_action = ActionFactory(SeparatorInfo("Tools"))
+        separator_action = ActionFactory(SeparatorInfo("工具"))
         add_separator_after = ["stop test run", "search unused keywords",
                                "preview", "view ride log"]
         #for key in sorted(self._tools_items.iterkeys()):
@@ -846,7 +841,7 @@ class ActionRegisterer(object):
 class AboutDialog(RIDEDialog):
 
     def __init__(self):
-        RIDEDialog.__init__(self, title='RIDE')
+        RIDEDialog.__init__(self, title='中思RPA')
         # set Left to Right direction (while we don't have localization)
         self.SetLayoutDirection(wx.Layout_LeftToRight)
         sizer = wx.BoxSizer(wx.VERTICAL)

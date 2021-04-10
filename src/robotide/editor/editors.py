@@ -61,7 +61,7 @@ class EditorPanel(wx.Panel):
         self.color_foreground = self.general_settings.get('foreground', 'black')
         self.color_secondary_background = self.general_settings.get('secondary background', 'light grey')
         self.color_secondary_foreground = self.general_settings.get('secondary foreground', 'black')
-        self.color_background_help = self.general_settings.get('background help', (240, 242, 80))
+        self.color_background_help = self.general_settings.get('background help', (255,255,255))
         self.color_foreground_text = self.general_settings.get('foreground text', (7, 0, 70))
         self.font_face = self.general_settings.get('font face', '')
         self.font_size = self.general_settings.get('font size', 11)
@@ -202,7 +202,7 @@ class Settings(wx.CollapsiblePane):
 
     def __init__(self, parent):
         wx.CollapsiblePane.__init__(
-            self, parent, wx.ID_ANY, 'Settings',
+            self, parent, wx.ID_ANY, '设置',
             style=wx.CP_DEFAULT_STYLE | wx.CP_NO_TLW_RESIZE)
         from ..preferences import RideSettings
         _settings = RideSettings()
@@ -211,7 +211,7 @@ class Settings(wx.CollapsiblePane):
         self.color_foreground = self.general_settings.get('foreground', 'black')
         self.color_secondary_background = self.general_settings.get('secondary background', 'light grey')
         self.color_secondary_foreground = self.general_settings.get('secondary foreground', 'black')
-        self.color_background_help = self.general_settings.get('background help', (240, 242, 80))
+        self.color_background_help = self.general_settings.get('background help', (255,255,255))
         self.color_foreground_text = self.general_settings.get('foreground text', (7, 0, 70))
         self.font_face = self.general_settings.get('font face', '')
         self.font_size = self.general_settings.get('font size', 11)
@@ -324,7 +324,7 @@ class _FileEditor(_RobotTableEditor):
     def _create_source_label(self, source):
         sizer = wx.BoxSizer(wx.HORIZONTAL)
         sizer.Add((5, 0))
-        sizer.Add(Label(self, label='Source', size=(context.SETTING_LABEL_WIDTH,
+        sizer.Add(Label(self, label='源文件', size=(context.SETTING_LABEL_WIDTH,
                                                     context.SETTING_ROW_HEIGHT)))
         self._source = wx.TextCtrl(self, style=wx.TE_READONLY | wx.NO_BORDER)
         self._source.SetBackgroundColour(Colour(self.color_background))

@@ -180,6 +180,10 @@ class FixtureController(_SettingController):
     def keyword_name(self):
         return self._fixture.name
 
+    @property
+    def title(self):
+        return self._fixture.title
+
     def replace_keyword(self, new_name, old_value=None):
         self._fixture.name = new_name
         self.mark_dirty()
@@ -202,6 +206,9 @@ class TagsController(_SettingController):
 
     def _init(self, tags):
         self._tags = tags
+    @property
+    def title(self):
+        return self._tags.title;
 
     def empty_tag(self):
         return Tag(None, controller=self)
@@ -294,7 +301,9 @@ class TimeoutController(_SettingController):
 
     def _init(self, timeout):
         self._timeout = timeout
-
+    @property
+    def title(self):
+        return self._timeout.title
     def _changed(self, value):
         val, msg = self._parse(value)
         return self._timeout.value != val or self._timeout.message != msg
@@ -315,6 +324,10 @@ class TemplateController(_SettingController):
 
     def _init(self, template):
         self._template = template
+
+    @property
+    def title(self):
+        return self._template.title
 
     def _set(self, value):
         _SettingController._set(self, value)

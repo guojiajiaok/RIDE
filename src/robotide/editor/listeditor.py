@@ -36,7 +36,7 @@ class ListEditorBase(wx.Panel):
         self.color_foreground = self.general_settings.get('foreground', 'black')
         self.color_secondary_background = self.general_settings.get('secondary background', 'light grey')
         self.color_secondary_foreground = self.general_settings.get('secondary foreground', 'black')
-        self.color_background_help = self.general_settings.get('background help', (240, 242, 80))
+        self.color_background_help = self.general_settings.get('background help', (255,255,255))
         self.color_foreground_text = self.general_settings.get('foreground text', (7, 0, 70))
         self.font_face = self.general_settings.get('font face', '')
         self.font_size = self.general_settings.get('font size', 11)

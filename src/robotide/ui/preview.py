@@ -33,9 +33,9 @@ class PreviewPlugin(Plugin, TreeAwarePluginMixin):
         self._panel = None
 
     def enable(self):
-        self.register_action(ActionInfo('Tools','Preview', self.OnShowPreview,
+        self.register_action(ActionInfo('工具','Preview', self.OnShowPreview,
                                         shortcut='F6',
-                                        doc='Show preview of the current file',
+                                        doc='预览当前文件',
                                         position=71))
         self.subscribe(self.OnTreeSelection, RideTreeSelection)
         self.subscribe(self.OnTabChanged, RideNotebookTabChanged)

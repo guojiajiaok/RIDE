@@ -24,9 +24,9 @@ from robotide.controller.tags import Tag, DefaultTag
 from robotide.publish import RideTestSelectedForRunningChanged
 
 tree_actions = """
-[Navigate]
-!Go &Back | Go back to previous location in tree | Alt-%s | ART_GO_BACK
-!Go &Forward | Go forward to next location in tree | Alt-%s | ART_GO_FORWARD
+[导航]
+!Go &Back | 返回前一位置 | Alt-%s | ART_GO_BACK
+!Go &Forward | 定位到下一位置 | Alt-%s | ART_GO_FORWARD
 """ % (('Left', 'Right') if IS_WINDOWS else ('Z', 'X'))
 # Left and right cannot be overridden in tree on non Windows OSses, issue 354
 
@@ -43,9 +43,9 @@ class TreeController(object):
     def register_tree_actions(self):
         actions = ActionInfoCollection(tree_actions, self, self._tree)
         self._action_registerer.register_actions(actions)
-        self._action_registerer.register_action(ActionInfo(menu_name='Edit', name='Add Tag to selected',
+        self._action_registerer.register_action(ActionInfo(menu_name='编辑', name='添加标签',
                                                            action=self.OnAddTagToSelected))
-        self._action_registerer.register_action(ActionInfo(menu_name='Edit', name='Clear Selected',
+        self._action_registerer.register_action(ActionInfo(menu_name='编辑', name='清空选择',
                                                            action=self.OnClearSelected))
 
     def OnGoBack(self, event):

@@ -82,7 +82,7 @@ class RecentFilesPlugin(Plugin):
 
     def _get_file_menu(self):
         menubar = self.get_menu_bar()
-        pos = menubar.FindMenu('File')
+        pos = menubar.FindMenu('文件')
         file_menu = menubar.GetMenu(pos)
         return file_menu
 
@@ -109,13 +109,13 @@ class RecentFilesPlugin(Plugin):
 
     def _add_recent_files_to_menu(self):
         if not self.recent_files:
-            action = ActionInfo('File', 'No recent files')
+            action = ActionInfo('文件', '无可用文件')
             action.set_menu_position(before='Exit')
             self.register_action(action)
         else:
             for n, path in enumerate(self.recent_files):
                 self._add_file_to_menu(path, n)
-        sep = SeparatorInfo('File')
+        sep = SeparatorInfo('文件')
         sep.set_menu_position(before='Exit')
         self.register_action(sep)
 
@@ -141,7 +141,7 @@ class RecentFileEntry(object):
         self.plugin.open_suite(self.path)
 
     def get_action_info(self):
-        action_info = ActionInfo('File', self.label, self.OnOpenRecent,
+        action_info = ActionInfo('文件', self.label, self.OnOpenRecent,
                                  doc=self.doc)
         action_info.set_menu_position(before='Exit')
         return action_info

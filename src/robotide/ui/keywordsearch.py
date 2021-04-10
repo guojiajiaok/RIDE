@@ -43,9 +43,9 @@ class KeywordSearch(Plugin):
         self.dirty = False
 
     def enable(self):
-        action = ActionInfo('Tools', 'Search Keywords', self.OnSearch,
+        action = ActionInfo('工具', 'Search keywords', self.OnSearch,
                             shortcut='F5',
-                            doc='Search keywords from libraries and resources',
+                            doc='搜索关键词',
                             icon=ImageProvider().KW_SEARCH_ICON,
                             position=51)
         self.register_action(action)
@@ -165,7 +165,7 @@ class KeywordSearchDialog(wx.Frame, RIDEDialog):
         sizer.Add(self._search_control)
 
     def _add_doc_filter(self, sizer):
-        self._use_doc = wx.CheckBox(self, label='Search documentation')
+        self._use_doc = wx.CheckBox(self, label='搜索文档')
         self._use_doc.SetValue(True)
         sizer.Add(self._use_doc)
 

@@ -40,9 +40,9 @@ class ReleaseNotes(object):
         self.enable()
 
     def enable(self):
-        self.application.frame.actions.register_action(ActionInfo('Help', 'Release Notes',
-                                                                  self.show,
-                                                                  doc='Show the release notes'))
+        # self.application.frame.actions.register_action(ActionInfo('Help', 'Release Notes',
+        #                                                           self.show,
+        #                                                           doc='Show the release notes'))
         self.show_if_updated()
 
     def show_if_updated(self):
@@ -77,7 +77,7 @@ class ReleaseNotes(object):
         return panel
 
     def set_content(self, html_win, content):
-        bkgcolor = self.general_settings.get('background help', Colour(240, 242, 80))
+        bkgcolor = self.general_settings.get('background help', Colour(255,255,255))
         fgcolor = self.general_settings.get('foreground text', Colour(7, 0, 70))
         # print(f"DEBUG: set_content  bkg={bkgcolor} bkg={type(bkgcolor)} fg={fgcolor} fg={type(fgcolor)}")
         try:

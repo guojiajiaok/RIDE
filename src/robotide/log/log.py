@@ -85,7 +85,7 @@ class LogPlugin(Plugin):
     def _create_menu(self):
         self.unregister_actions()
         self.register_action(ActionInfo(
-            'Tools', 'View RIDE Log', self.OnViewLog, position=84))
+            '工具', '查看RPA日志', self.OnViewLog, position=84))
 
     def _log_message(self, message):
         self._log.append(message)

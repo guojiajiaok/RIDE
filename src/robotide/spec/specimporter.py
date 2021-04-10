@@ -26,10 +26,10 @@ from .xmlreaders import get_name_from_xml
 
 class SpecImporterPlugin(Plugin):
 
-    HEADER = 'Import Library Spec XML'
+    HEADER = '导入库XML'
 
     def enable(self):
-        self.register_action(ActionInfo('Tools', self.HEADER,
+        self.register_action(ActionInfo('工具', self.HEADER,
                                         self.execute_spec_import, position=83))
         PUBLISHER.subscribe(self._ps_on_execute_spec_import, RideExecuteSpecXmlImport)
 

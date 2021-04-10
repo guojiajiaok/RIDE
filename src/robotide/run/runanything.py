@@ -47,16 +47,16 @@ class RunAnything(Plugin):
 
     def _create_menu(self, configs):
         self.unregister_actions()
-        self.register_action(ActionInfo('Macros', 'Manage Run Configurations',
+        self.register_action(ActionInfo('宏定义', '管理运行配置',
                                         self.OnManageConfigurations))
-        self.register_action(SeparatorInfo('Macros'))
+        self.register_action(SeparatorInfo('宏定义'))
         for index, cfg in enumerate(configs):
             self._add_config_to_menu(cfg, index+1)
 
     def _add_config_to_menu(self, config, index):
         def run(event):
             Runner(config, self.notebook).run()
-        info = ActionInfo('Macros', name='%d: %s' % (index, config.name),
+        info = ActionInfo('宏定义', name='%d: %s' % (index, config.name),
                           doc=config.help, action=run)
         self.register_action(info)
 

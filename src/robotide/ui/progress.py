@@ -25,7 +25,7 @@ class ProgressObserver(object):
     def __init__(self, frame, title, message):
         self._progressbar = wx.ProgressDialog(title, message,
                                               maximum=100, parent=frame,
-                                              style=wx.PD_ELAPSED_TIME)
+                                              style=wx.PD_SMOOTH)
 
     def notify(self):
         self._progressbar.Pulse()
@@ -42,13 +42,13 @@ class ProgressObserver(object):
 class LoadProgressObserver(ProgressObserver):
 
     def __init__(self, frame):
-        ProgressObserver.__init__(self, frame, 'RIDE', 'Loading the test data')
+        ProgressObserver.__init__(self, frame, '中思RPA', '正在加载...')
 
 
 class RenameProgressObserver(ProgressObserver):
 
     def __init__(self, frame):
-        ProgressObserver.__init__(self, frame, 'RIDE', 'Renaming')
+        ProgressObserver.__init__(self, frame, '中思RPA', '更改中')
         self._notification_occured = 0
 
     def notify(self):

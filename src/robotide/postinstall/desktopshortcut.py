@@ -45,8 +45,8 @@ class ShortcutPlugin(Plugin):
 
     def _create_menu(self):
         self.unregister_actions()
-        self.register_action(ActionInfo('Tools',
-                                        'Create RIDE Desktop Shortcut',
+        self.register_action(ActionInfo('工具',
+                                        '创建快捷方式',
                                         self.OnViewShortcutCreate,
                                         position=85))
 

@@ -21,12 +21,13 @@ from .comments import Comment
 @py2to3
 class Setting(object):
 
-    def __init__(self, setting_name, parent=None, comment=None):
+    def __init__(self, setting_name, parent=None, comment=None,title=''):
         self.setting_name = setting_name
         self.parent = parent
         self._set_initial_value()
         self._set_comment(comment)
         self._populated = False
+        self.title = title;
 
     def _set_initial_value(self):
         self.value = []

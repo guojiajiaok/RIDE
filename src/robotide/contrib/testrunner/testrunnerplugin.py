@@ -166,7 +166,7 @@ class TestRunnerPlugin(Plugin, RIDEDialog):
 
     report_regex = re.compile("^Report: {2}(.*\.html)$", re.MULTILINE)
     log_regex = re.compile("^Log: {5}(.*\.html)$", re.MULTILINE)
-    title = "Run"
+    title = "运行"
 
     def __init__(self, application=None):
         Plugin.__init__(self, application, initially_enabled=True,
@@ -231,20 +231,20 @@ class TestRunnerPlugin(Plugin, RIDEDialog):
         self._create_temporary_directory()
 
     def _register_actions(self):
-        run_action_info = ActionInfo("Tools", "Run Tests", self.OnRun, None,
+        run_action_info = ActionInfo("工具", "Run Tests", self.OnRun, None,
                                      "F8", ImageProvider().TOOLBAR_PLAY,
-                                     "Run the selected tests", position=10)
+                                     "运行测试", position=10)
         self._run_action = self.register_action(run_action_info)
-        run_action_debug = ActionInfo("Tools", "Run Tests with Debug",
+        run_action_debug = ActionInfo("工具", "Run Tests with Debug",
                                       self.OnRunDebug, None,
                                       "F9", getBugIconBitmap(),
-                                      "Run the selected tests with Debug",
+                                      "运行已选择测试",
                                       position=8)
         self._run_action = self.register_action(run_action_debug)
-        stop_action_info = ActionInfo("Tools", "Stop Test Run", self.OnStop,
+        stop_action_info = ActionInfo("工具", "Stop Test Run", self.OnStop,
                                       None, "CtrlCmd-F8",
                                       ImageProvider().TOOLBAR_STOP,
-                                      "Stop a running test", position=11)
+                                      "停止运行测试", position=11)
         self._stop_action = self.register_action(stop_action_info)
 
     def _read_run_profiles(self):
@@ -417,7 +417,7 @@ class TestRunnerPlugin(Plugin, RIDEDialog):
         self._log_message_queue = Queue()
 
         self._min_log_level_number = \
-            LOG_LEVELS[ArgsParser.get_message_log_level(args)]
+            ArgsParser.get_message_log_level(args)
 
         self._logs_directory = \
             ArgsParser.get_output_directory(args, self._default_output_dir)
@@ -635,30 +635,30 @@ class TestRunnerPlugin(Plugin, RIDEDialog):
                              style=wx.TB_HORIZONTAL | wx.TB_HORZ_TEXT | wx.TB_NODIVIDER)
         toolbar.SetBackgroundColour(self._mysettings.color_background)
         toolbar.SetForegroundColour(self._mysettings.color_foreground)
-        toolbar.AddTool(ID_RUN, "Start", ImageProvider().TOOLBAR_PLAY,
+        toolbar.AddTool(ID_RUN, "启动", ImageProvider().TOOLBAR_PLAY,
                         wx.NullBitmap, wx.ITEM_NORMAL, shortHelp="Start robot",
                         longHelp="Start running the robot test suite")
-        toolbar.AddTool(ID_RUNDEBUG, "Debug", getBugIconBitmap(), wx.NullBitmap,
+        toolbar.AddTool(ID_RUNDEBUG, "调试", getBugIconBitmap(), wx.NullBitmap,
                         wx.ITEM_NORMAL, shortHelp="Start robot",
                         longHelp="Start running the robot test suite "
                                  "with DEBUG loglevel")
-        toolbar.AddTool(ID_STOP, "Stop", ImageProvider().TOOLBAR_STOP,
+        toolbar.AddTool(ID_STOP, "停止", ImageProvider().TOOLBAR_STOP,
                         wx.NullBitmap, wx.ITEM_NORMAL,
                         shortHelp="Stop a running test",
                         longHelp="Stop a running test")
-        toolbar.AddTool(ID_PAUSE, "Pause", ImageProvider().TOOLBAR_PAUSE,
+        toolbar.AddTool(ID_PAUSE, "暂停", ImageProvider().TOOLBAR_PAUSE,
                         wx.NullBitmap, wx.ITEM_NORMAL,
                         shortHelp="Pause test execution",
                         longHelp="Pause test execution")
-        toolbar.AddTool(ID_CONTINUE, "Continue",
+        toolbar.AddTool(ID_CONTINUE, "继续",
                         ImageProvider().TOOLBAR_CONTINUE,
                         wx.NullBitmap, wx.ITEM_NORMAL,
                         shortHelp="Continue test execution",
                         longHelp="Continue test execution")
-        toolbar.AddTool(ID_STEP_NEXT, "Next", ImageProvider().TOOLBAR_NEXT,
+        toolbar.AddTool(ID_STEP_NEXT, "步进", ImageProvider().TOOLBAR_NEXT,
                         wx.NullBitmap, wx.ITEM_NORMAL, shortHelp="Step next",
                         longHelp="Step next")
-        toolbar.AddTool(ID_STEP_OVER, "Step over", ImageProvider().TOOLBAR_NEXT,
+        toolbar.AddTool(ID_STEP_OVER, "跳出", ImageProvider().TOOLBAR_NEXT,
                         wx.NullBitmap, wx.ITEM_NORMAL, shortHelp="Step over",
                         longHelp="Step over")
         toolbar.Realize()
@@ -682,7 +682,7 @@ class TestRunnerPlugin(Plugin, RIDEDialog):
         # print(f"DEBUG: toolbar before {toolbar.UseBackgroundColour()}")
         toolbar.SetOwnBackgroundColour(self._mysettings.color_background)
         toolbar.SetOwnForegroundColour(self._mysettings.color_foreground)
-        profile_label = Label(toolbar, label="Execution Profile:  ")
+        profile_label = Label(toolbar, label="当前配置:  ")
         choices = self._test_runner.get_profile_names()
         self.choice = wx.Choice(toolbar, wx.ID_ANY, choices=choices)
         self.choice.SetToolTip(wx.ToolTip("Choose which method to use for "
@@ -692,13 +692,13 @@ class TestRunnerPlugin(Plugin, RIDEDialog):
         toolbar.AddSeparator()
         report_image = getReportIconBitmap()
         log_image = getLogIconBitmap()
-        toolbar.AddTool(ID_OPEN_LOGS_DIR, "Open Logs Directory",
+        toolbar.AddTool(ID_OPEN_LOGS_DIR, "打开日志目录",
                         ImageProvider().DATADIRIMG,
                         shortHelp="View All Logs in Explorer")
-        toolbar.AddTool(ID_SHOW_REPORT, " Report", report_image,
+        toolbar.AddTool(ID_SHOW_REPORT, " 报表", report_image,
                         shortHelp=localize_shortcuts("View Robot Report in "
                                                      "Browser (CtrlCmd-R)"))
-        toolbar.AddTool(ID_SHOW_LOG, " Log", log_image,
+        toolbar.AddTool(ID_SHOW_LOG, " 日志", log_image,
                         shortHelp=localize_shortcuts("View Robot Log in"
                                                      " Browser (CtrlCmd-L)"))
         toolbar.AddSeparator()
@@ -706,14 +706,14 @@ class TestRunnerPlugin(Plugin, RIDEDialog):
         # is why the label has a couple spaces after the colon. gross,
         # but effective.
         self.autosave_cb = \
-            self._create_check_box(toolbar, ID_AUTOSAVE, " Autosave  ",
+            self._create_check_box(toolbar, ID_AUTOSAVE, " 自动保存  ",
                                    self.auto_save, "Automatically save all "
                                                    "changes before running")
         toolbar.AddControl(self.autosave_cb)
 
         self.pause_on_failure_cb = \
             self._create_check_box(toolbar, ID_PAUSE_ON_FAILURE,
-                                   " Pause after failure  ", False,
+                                   " 失败暂停  ", False,
                                    "Automatically pause after failing keyword")
         toolbar.AddControl(self.pause_on_failure_cb)
 
@@ -822,11 +822,11 @@ class TestRunnerPlugin(Plugin, RIDEDialog):
         panel.SetForegroundColour(self._mysettings.color_foreground)
         self._progress_bar = ProgressBar(panel)
         self._console_log_panel, self._console_log_ctrl = \
-            self._create_collapsible_pane(panel, 'Console log',
+            self._create_collapsible_pane(panel, '控制台日志',
                                           self.show_console_log,
                                           self.OnConsoleLogPaneChanged)
         self._message_log_panel, self._message_log_ctrl = \
-            self._create_collapsible_pane(panel, 'Message log',
+            self._create_collapsible_pane(panel, '消息日志',
                                           self.show_message_log,
                                           self.OnMessageLogPaneChanged)
 
@@ -1097,7 +1097,7 @@ class ProgressBar(wx.Panel):
     def _update_message(self):
         """Update the displayed elapsed time, passed and failed counts"""
         elapsed = time.time() - self._start_time
-        message = "elapsed time: %s     pass: %s     fail: %s" % (
+        message = "时间线: %s     pass: %s     fail: %s" % (
             self._seconds_to_string(elapsed), self._pass, self._fail)
         message += self._get_current_keyword_text()
         self._label.SetLabel(message)

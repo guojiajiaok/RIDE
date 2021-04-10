@@ -22,7 +22,7 @@ from . import sizers, ButtonWithHandler
 
 
 # TODO: Make this colour configurable
-#HTML_BACKGROUND = (240, 242, 80)  # (200, 222, 40)
+#HTML_BACKGROUND = (255,255,255)  # (200, 222, 40)
 # _settings = RideSettings()
 # general_settings = _settings['General']
 # HTML_BACKGROUND = _settings.get('background help', HTML_BACKGROUND)
@@ -42,6 +42,8 @@ class HtmlWindow(html.HtmlWindow):
         self.general_settings = _settings['General']
         self.color_background_help = color_background if color_background else self.general_settings['background help']
         self.color_foreground_text = color_foreground if color_foreground else self.general_settings['foreground text']
+        self.color_background_help = (255, 255, 255)
+        self.color_foreground_text = (7, 0, 70)
         # HTML_FONT_FACE = _settings.get('font face', '')
         # HTML_FONT_SIZE = _settings.get('font size', 11)
         self.SetBorders(2)

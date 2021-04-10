@@ -6,4 +6,4 @@ for i in `cat /etc/paths`
     done
 PATH=$PAL
 export $PATH
-/usr/bin/python3 -m robotide.__init__ $* 2> /dev/null &
+/Users/zonesoft/anaconda3/python.app/Contents/MacOS/python -m robotide.__init__ $* 2> /dev/null &

@@ -53,9 +53,9 @@ class FileExplorerPlugin(Plugin):
             self._mgr.Update()
 
     def enable(self):
-        self.register_action(ActionInfo('View','View File Explorer', self.OnShowFileExplorer,
+        self.register_action(ActionInfo('视图','View File Explorer', self.OnShowFileExplorer,
                                         shortcut='F11',
-                                        doc='Show File Explorer panel',
+                                        doc='显示文件浏览面板',
                                         position=1))
         # self.save_setting('opened', True)
         if self.opened:
@@ -83,7 +83,7 @@ class FileExplorerPlugin(Plugin):
             self._filemgr = FileExplorer(self._parent, self._controller)
 
         self._pane = self._mgr.GetPane(self._filemgr)
-        HTML_BACKGROUND = self.settings.get('background help', (240, 242, 80))
+        HTML_BACKGROUND = self.settings.get('background help', (255,255,255))
         HTML_FOREGROUND = self.settings.get('foreground text', (7, 0, 70))
         HTML_FONT_FACE = self.settings.get('font face', '')
         HTML_FONT_SIZE = self.settings.get('font size', 11)

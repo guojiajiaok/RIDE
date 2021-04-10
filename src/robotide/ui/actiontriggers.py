@@ -36,7 +36,7 @@ class MenuBar(object):
         self._frame.SetMenuBar(self._mb)
 
     def _create_default_menus(self):
-        for name in ['File', 'Edit', 'Tools', 'Help']:
+        for name in ['文件', '编辑', '工具', '帮助']:
             self._create_menu(name, before_help=False)
 
     def _create_menu(self, name, before_help=True):
@@ -46,7 +46,7 @@ class MenuBar(object):
 
     def _insert_menu(self, menu, before_help):
         if before_help:
-            index = [m.name for m in self._menus].index('&Help')
+            index = [m.name for m in self._menus].index('&帮助')
         else:
             index = len(self._menus)
         self._menus.insert(index, menu)
@@ -123,7 +123,7 @@ class _Menu(object):
 
     def _get_name(self, action, build_new):
         get_name = build_new and self._name_builder.get_name or \
-                                 self._name_builder.get_registered_name
+                   self._name_builder.get_registered_name
         if not action.shortcut:  # DEBUG not action.shortcut:
             return get_name(action.name)
         sht = action.get_shortcut()
@@ -135,8 +135,18 @@ class _Menu(object):
         name_with_accelerator = self._get_name(action, build_new=True)
         menu_item = MenuItem(self._frame, self, name_with_accelerator)
         pos = action.get_insertion_index(self.wx_menu)
+        '''
         wx_menu_item = self.wx_menu.Insert(pos, menu_item.id,
                                            menu_item.name, action.doc)
+        
+        '''
+        if len(action.doc.strip())>0:
+            wx_menu_item = self.wx_menu.Insert(pos, menu_item.id,
+                                               action.doc, action.doc)
+        else:
+            wx_menu_item = self.wx_menu.Insert(pos, menu_item.id,
+                                               menu_item.name, action.doc)
+
         if action.icon:
             wx_menu_item.SetBitmap(action.icon)
         menu_item.set_wx_menu_item(wx_menu_item)
@@ -144,7 +154,7 @@ class _Menu(object):
 
     def remove_menu_item(self, id):
         self.wx_menu.Delete(id)
-        del(self._menu_items[id])
+        del (self._menu_items[id])
 
 
 class _NameBuilder(object):
@@ -282,7 +292,7 @@ class ShortcutRegistry(object):
         if action.has_shortcut() and action.has_action():
             delegator = self._actions.setdefault(action.get_shortcut(),
                                                  ActionDelegator(self._frame,
-                                                 action.shortcut))
+                                                                 action.shortcut))
             delegator.add(action)
             action.register(self)
             self._update_accelerator_table()
@@ -290,7 +300,7 @@ class ShortcutRegistry(object):
     def unregister(self, action):
         key = action.get_shortcut()
         if self._actions[key].remove(action):
-            del(self._actions[key])
+            del (self._actions[key])
         self._update_accelerator_table()
 
     def _update_accelerator_table(self):

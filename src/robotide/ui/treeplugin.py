@@ -98,15 +98,15 @@ class TreePlugin(Plugin):
                 register = self._mgr.AddPane
 
             register(self._tree, wx.lib.agw.aui.AuiPaneInfo().Name("tree_content").
-                     Caption("Test Suites").LeftDockable(True).CloseButton(True))
+                     Caption("测试集").LeftDockable(True).CloseButton(True))
 
             self._mgr.Update()
             # print(f"DEBUG: TreePlugin frame {self._parent.GetTitle()} tree {self._tree.GetName()}")
 
     def enable(self):
-        self.register_action(ActionInfo('View','View Test Suites Explorer', self.OnShowTree,
+        self.register_action(ActionInfo('视图','View Test Suites Explorer', self.OnShowTree,
                                         shortcut='F12',
-                                        doc='Show Test Suites tree panel',
+                                        doc='显示测试集树面板',
                                         position=1))
         self.subscribe(self.OnTreeSelection, RideTreeSelection)
         # self.save_setting('opened', True)
@@ -152,7 +152,7 @@ class TreePlugin(Plugin):
 
         # print(f"DEBUG: Tree OnShowTree event {event}")
         self._pane = self._mgr.GetPane(self._tree)
-        HTML_BACKGROUND = self.settings.get('background help', (240, 242, 80))
+        HTML_BACKGROUND = self.settings.get('background help', (255,255,255))
         HTML_FOREGROUND = self.settings.get('foreground text', (7, 0, 70))
         HTML_FONT_FACE = self.settings.get('font face', '')
         HTML_FONT_SIZE = self.settings.get('font size', 11)
@@ -162,7 +162,7 @@ class TreePlugin(Plugin):
         # self._mgr.Update()
         self._mgr.AddPane(self._tree,
                           wx.lib.agw.aui.AuiPaneInfo().Name("tree_content").
-                          Caption("Test Suites").LeftDockable(True).
+                          Caption("测试集").LeftDockable(True).
                           CloseButton(True))
         self._tree.SetBackgroundStyle(wx.BG_STYLE_SYSTEM)
         self._tree.SetBackgroundColour(HTML_BACKGROUND)
@@ -202,7 +202,7 @@ class TreePlugin(Plugin):
 
 
 class Tree(treemixin.DragAndDrop, customtreectrl.CustomTreeCtrl):
-    _RESOURCES_NODE_LABEL = 'External Resources'
+    _RESOURCES_NODE_LABEL = '外部文件集'
 
     def __init__(self, parent, action_registerer, settings=None):
         from ..controller.ui.treecontroller import TreeController

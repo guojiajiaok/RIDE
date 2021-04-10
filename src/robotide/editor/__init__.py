@@ -24,25 +24,25 @@ from ..utils import overrides
 from ..widgets import PopupCreator
 
 _EDIT = """
-[Edit]
-&Undo | Undo last modification | Ctrlcmd-Z
-&Redo | Redo modification | Ctrlcmd-Y
+[编辑]
+&Undo | 撤销 | Ctrlcmd-Z
+&Redo | 恢复 | Ctrlcmd-Y
 ---
-Cu&t | Cut | Ctrlcmd-X
-&Copy | Copy | Ctrlcmd-C
-&Paste | Paste | Ctrlcmd-V
-&Insert | Insert | Shift-Ctrl-V
-&Delete | Delete  | Del
+Cu&t | 剪切 | Ctrlcmd-X
+&Copy | 拷贝 | Ctrlcmd-C
+&Paste | 黏贴 | Ctrlcmd-V
+&Insert | 插入 | Shift-Ctrl-V
+&Delete | 删除  | Del
 ---
-Comment | Comment selected rows | Ctrlcmd-3
-Uncomment | Uncomment selected rows | Ctrlcmd-4
+Comment | 注释选择行 | Ctrlcmd-3
+Uncomment | 取消注释 | Ctrlcmd-4
 ---
-Insert Cells | Insert Cells | Shift-Ctrl-I
-Delete Cells | Delete Cells | Shift-Ctrl-D
-Insert Rows | Insert Rows | Ctrlcmd-I
-Delete Rows | Delete Rows | Ctrlcmd-D
-[Tools]
-Content Assistance (Ctrl-Space or Ctrl-Alt-Space) | Show possible keyword and variable completions | | | POSITION-70
+Insert Cells | 插入单元格 | Shift-Ctrl-I
+Delete Cells | 删除单元格 | Shift-Ctrl-D
+Insert Rows | 插入行 | Ctrlcmd-I
+Delete Rows | 删除行 | Ctrlcmd-D
+[工具]
+Content Assistance (Ctrl-Space or Ctrl-Alt-Space) | 关键词帮助工具 | | | POSITION-70
 """
 
 
@@ -109,7 +109,7 @@ class EditorPlugin(Plugin, TreeAwarePluginMixin):
     def _show_editor(self):
         if not self._tab:
             self._tab = _EditorTab(self)
-            self.add_tab(self._tab, 'Edit', allow_closing=False)
+            self.add_tab(self._tab, '编辑器', allow_closing=False)
         if self.is_focused():
             self._editor = self._create_editor()
             self._tab.show_editor(self._editor)
@@ -141,7 +141,7 @@ class EditorPlugin(Plugin, TreeAwarePluginMixin):
         self._show_editor()
 
     def OnTabChanging(self, message):
-        if 'Edit' in message.oldtab:
+        if '编辑器' in message.oldtab:
             self._tab.save()
 
     def OnSaveToModel(self, message):

@@ -37,6 +37,8 @@ class _BaseController(object):
 
 class ControllerWithParent(_BaseController):
 
+    def __init__(self,title=''):
+        self.title = title;
     @property
     def parent(self):
         return self._parent
